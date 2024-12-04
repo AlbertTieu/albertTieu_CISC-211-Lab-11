@@ -65,7 +65,50 @@ nanValue: .word 0x7FFFFFFF
  .type initVariables,%function
 initVariables:
     /* YOUR initVariables CODE BELOW THIS LINE! Don't forget to push and pop! */
+    
+    push {r4-r11, LR}
 
+    mov r1, 0
+    
+    /*initialize f1 variables*/
+    ldr r0, =f1
+    str r1, [r0]
+    ldr r0, =sb1
+    str r1, [r0]
+    ldr r0, =biasedExp1
+    str r1, [r0]
+    ldr r0, =exp1
+    str r1, [r0]
+    ldr r0, =mant1
+    str r1, [r0]
+    
+    /*initialize f2 variables*/
+    ldr r0, =f2
+    str r1, [r0]
+    ldr r0, =sb2
+    str r1, [r0]
+    ldr r0, =biasedExp2
+    str r1, [r0]
+    ldr r0, =exp2
+    str r1, [r0]
+    ldr r0, =mant2
+    str r1, [r0]
+    
+    /*initialize Max variables*/
+    ldr r0, =fMax
+    str r1, [r0]
+    ldr r0, =signBitMax
+    str r1, [r0]
+    ldr r0, =biasedExpMax
+    str r1, [r0]
+    ldr r0, =expMax
+    str r1, [r0]
+    ldr r0, =mantMax
+    str r1, [r0]
+    
+    pop {r4-r11, LR}
+    bx lr
+    
     /* YOUR initVariables CODE ABOVE THIS LINE! Don't forget to push and pop! */
 
     
@@ -83,6 +126,19 @@ initVariables:
 getSignBit:
     /* YOUR getSignBit CODE BELOW THIS LINE! Don't forget to push and pop! */
 
+    push {r4-r11, LR}
+
+    /*r2 = value of 32b float*/
+    ldr r2, [r0]
+    
+    /*shift to get msb*/
+    asr r2, r2, #31
+    
+    str r2, [r1]
+    
+    pop {r4-r11, LR}
+    bx lr
+    
     /* YOUR getSignBit CODE ABOVE THIS LINE! Don't forget to push and pop! */
     
 
@@ -110,6 +166,13 @@ getSignBit:
 getExponent:
     /* YOUR getExponent CODE BELOW THIS LINE! Don't forget to push and pop! */
     
+    push {r4-r11, LR}
+
+    
+    
+    pop {r4-r11, LR}
+    bx lr
+    
     /* YOUR getExponent CODE ABOVE THIS LINE! Don't forget to push and pop! */
    
 
@@ -127,6 +190,13 @@ getExponent:
 .type getMantissa,%function
 getMantissa:
     /* YOUR getMantissa CODE BELOW THIS LINE! Don't forget to push and pop! */
+    
+    push {r4-r11, LR}
+
+    
+    
+    pop {r4-r11, LR}
+    bx lr
     
     /* YOUR getMantissa CODE ABOVE THIS LINE! Don't forget to push and pop! */
    
@@ -169,6 +239,13 @@ asmFmax:
 
     /* YOUR asmFmax CODE BELOW THIS LINE! VVVVVVVVVVVVVVVVVVVVV  */
     
+    push {r4-r11, LR}
+    
+    mov r4, r0
+    mov r5, r0
+    
+    pop {r4-r11, LR}
+    bx lr
     
     /* YOUR asmFmax CODE ABOVE THIS LINE! ^^^^^^^^^^^^^^^^^^^^^  */
 
